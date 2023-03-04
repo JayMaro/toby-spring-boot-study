@@ -10,7 +10,6 @@ import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactor
 import org.springframework.boot.web.server.WebServer;
 import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.context.support.GenericApplicationContext;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -19,7 +18,7 @@ public class HellobootApplication {
 
 	public static void main(String[] args) {
 		GenericApplicationContext applicationContext = new GenericApplicationContext();
-		applicationContext.registerBean(HelloService.class);
+		applicationContext.registerBean(HelloController.class);
 		applicationContext.refresh();
 
 
@@ -33,8 +32,8 @@ public class HellobootApplication {
 					if (req.getRequestURI().equals("/hello") && req.getMethod().equals(HttpMethod.GET.name())) {
 						String name = req.getParameter("name");
 
-						HelloService helloService = applicationContext.getBean(HelloService.class);
-						String result = helloService.hello(name);
+						HelloController helloController = applicationContext.getBean(HelloController.class);
+						String result = helloController.hello(name);
 
 						resp.setContentType(MediaType.TEXT_PLAIN_VALUE);
 						resp.getWriter().println(result);

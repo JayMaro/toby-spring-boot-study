@@ -1,7 +1,7 @@
 package tobyspring.helloboot;
 
-public class HelloService {
-    public String hello(String name) {
+public class SimpleHelloService {
+    String sayHello(String name) {
         return "Hello " + name;
     }
 }
